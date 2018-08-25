@@ -22,8 +22,9 @@ const abi = require('../../build/contracts/Ethernal.json').abi
 let address = "0xd64F03d9bdAF6ccD1166A23fd81e41b75A3E39f2"
 const contract = new web3.eth.Contract(abi, address)
 
-exports.getLocks = function() {
-  return contract.methods.getOccupiedPositions().call();
+exports.getLocks = async function() {
+  let locks = await contract.methods.getOccupiedPositions().call()
+  return locks.map((lock) => {return bytesToPosition(lock)})
 }
 
 exports.getLock = async function(position) {
@@ -47,5 +48,6 @@ exports.buyLock = async function(position, initialsLeft, initialsRight) {
 
 // Helper functions
 positionToBytes = (position) => { return web3.utils.bytesToHex(position) }
-stringToBytes = (string) => { return web3.utils.utf8ToHex(string)
+bytesToPosition = (bytes) => { return web3.utils.hexToBytes(bytes) }
+stringToBytes = (string) => { return web3.utils.utf8ToHex(string) }
 bytesToString = (bytes) => { return web3.utils.hexToUtf8(bytes) }
