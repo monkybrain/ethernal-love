@@ -1,7 +1,7 @@
 pragma solidity ^0.4.24;
 
 contract Ethernal {
-    
+
     mapping (bytes2 => Lock) public locks;
     bytes2[] public occupiedPositions;
     uint256 public price = 0.04 ether; // approx. 100 SEK at ETH/USD 275
@@ -31,7 +31,7 @@ contract Ethernal {
         msg.sender.transfer(msg.value - price);
     }
 
-    function getOccupiedPositions() public returns (bytes2[]) {
+    function getOccupiedPositions() public view returns (bytes2[]) {
       return occupiedPositions;
     }
 

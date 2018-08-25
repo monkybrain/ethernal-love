@@ -1,0 +1,1 @@
+console.error("Error: Parsing file /Users/philip/Projects/2018/ethernal-love/web/src/bridge.js: Unexpected token (52:0)");

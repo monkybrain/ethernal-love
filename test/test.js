@@ -10,7 +10,7 @@ contract("Ethernal", function (accounts) {
     assert.equal(priceInEther, "0.04")
   })
 
-  it("buy lock", async function() {
+  it("should buy lock", async function() {
 
     // Get contract
     let contract = await Ethernal.deployed()
@@ -46,7 +46,7 @@ contract("Ethernal", function (accounts) {
     assert.equal(bytesToString(lock[2]), "CD")
   })
 
-  it("buying lock at occupied position should fail", async function() {
+  it("should fail to buy lock at occupied position", async function() {
 
     // Get contract
     let contract = await Ethernal.deployed()
