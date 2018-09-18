@@ -10,11 +10,20 @@ if (typeof web3 !== 'undefined') {
 web3 = new Web3(provider)
 
 // Setup account
-let account = web3.currentProvider.publicConfigStore._state.selectedAddress
-console.log("User account:", account)
+let account = null
+let network = null
+function handleConfig(state) {
+  if (state.networkVersion != "3") {
+    alert("This demo only works with the Ropsten Ethereum test network.")
+    network = state.networkVersion
+  } else {
+    account = state.selectedAddress
+    network = state.networkVersion
+  }
+}
+handleConfig(web3.currentProvider.publicConfigStore._state)
 web3.currentProvider.publicConfigStore.on('update', (x) => {
-  account = web3.currentProvider.publicConfigStore._state.selectedAddress
-  console.log("Account switched to: " + account)
+  handleConfig(web3.currentProvider.publicConfigStore._state)
 })
 
 // Init contract

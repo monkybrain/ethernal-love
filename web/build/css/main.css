@@ -1,11 +1,13 @@
 body {
   font-family: 'Roboto';
+  display: inline-block;
 }
 
 .fence {
   display: inline-grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
+  position: relative;
 }
 
 .position {
@@ -22,4 +24,9 @@ body {
   height: 30px;
   top: 8px;
   left: 10px;
+}
+
+#info {
+  position: relative;
+  top: 200px;
 }

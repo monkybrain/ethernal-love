@@ -1,14 +1,17 @@
 const R = require('ramda')
 const bridge = require('./bridge.js')
 
+const FENCE_COLUMNS = 10
+const FENCE_ROWS = 5
+
 exports.drawFence = function(locks) {
   let fence = document.getElementById('fence')
   while (fence.firstChild) {
     fence.removeChild(fence.firstChild);
   }
   let count = 0
-  for (let x = 0; x < 10; x++) {
-    for (let y = 0; y < 10; y++) {
+  for (let x = 0; x < FENCE_COLUMNS; x++) {
+    for (let y = 0; y < FENCE_ROWS; y++) {
       let div
       if (R.contains([x, y], locks)) {
         div = createDivWithLock([x, y])
@@ -18,6 +21,8 @@ exports.drawFence = function(locks) {
       fence.appendChild(div)
     }
   }
+  let info = document.getElementById('info')
+  info.innerHTML = `${FENCE_COLUMNS}x${FENCE_ROWS} prototype fence`
 }
 
 async function showLock(position) {
